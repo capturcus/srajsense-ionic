@@ -12,7 +12,12 @@
 
 </ion-header>
 
-
 <ion-content padding>
-add data point works!
+  <div *ngFor="let feature of features; let i = index">
+    name: <input [(ngModel)]="feature.name" />
+    options: {{feature.options.length}}
+    <button ion-button color="light" (click)="editOptions(feature, i)" >edit options</button>
+  </div>
+  <button ion-button color="primary" (click)="saveDataPoint()">Save datapoint</button>
+  <button ion-button color="secondary" (click)="addFeature()">Add feature</button>
 </ion-content>

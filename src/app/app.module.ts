@@ -12,17 +12,17 @@ import { AddDataPointPage } from '../pages/add-data-point/add-data-point';
   declarations: [
     MyApp,
     HomePage,
-    AddDataPointPage
+    AddDataPointPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    AddDataPointPage
+    AddDataPointPage,
   ],
   providers: [
     StatusBar,

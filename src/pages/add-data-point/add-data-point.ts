@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Feature } from './../../model';
 
 /**
  * Generated class for the AddDataPointPage page.
@@ -15,11 +16,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddDataPointPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  features: Array<Feature> = [];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddDataPointPage');
   }
 
+  addFeature() {
+    this.features.push(new Feature("", []));
+  }
+
+  editOptions(feature, i) {
+    console.log(feature, i);
+    let editOptionsModal = this.modalCtrl.create('ModalPage', {feature: JSON.parse(JSON.stringify(feature))});
+    editOptionsModal.onDidDismiss(data => {
+      if (data !== null && data !== undefined) {
+        this.features[i] = data;
+      }
+    });
+    editOptionsModal.present();
+  }
+
+  saveDataPoint() {
+    console.log("save data point");
+    console.log(this.features);
+  }
 }
