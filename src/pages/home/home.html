@@ -9,5 +9,6 @@
 <ion-content padding>
   <button ion-button full (click)="goToAddDataPoint()">Add Data Point</button>
   Add a measurement:
-  <div *ngFor="let datapoint of datapoints" style="font-size: 20pt; width: 100%">{{datapoint.name}}</div>
+  <div *ngFor="let datapoint of datapoints" style="font-size: 20pt; width: 100%"
+    (click)="addMeasurement(datapoint)">{{datapoint.name}}</div>
 </ion-content>

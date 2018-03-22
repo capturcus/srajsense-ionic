@@ -1,0 +1,24 @@
+<!--
+  Generated template for the AddMeasurementPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Measurement: {{datapoint.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item *ngFor="let feature of datapoint.features">
+    <ion-label>{{feature.name}}</ion-label>
+    <ion-select interface="popover" [(ngModel)]="feature.chosen">
+      <ion-option *ngFor="let option of feature.options" value={{option}}>{{option}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button (click)="saveMeasurement()">save {{datapoint.name}}</button>
+</ion-content>

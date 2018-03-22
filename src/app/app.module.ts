@@ -8,12 +8,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddDataPointPage } from '../pages/add-data-point/add-data-point';
+import { AddMeasurementPage } from '../pages/add-measurement/add-measurement';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AddDataPointPage,
+    AddMeasurementPage,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { AddDataPointPage } from '../pages/add-data-point/add-data-point';
     MyApp,
     HomePage,
     AddDataPointPage,
+    AddMeasurementPage,
   ],
   providers: [
     StatusBar,
