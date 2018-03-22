@@ -1,12 +1,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Srajsense
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <button ion-button full (click)="goToAddDataPoint()">Add Data Point</button>
-  add a measurement
+  Add a measurement:
+  <div *ngFor="let datapoint of datapoints" style="font-size: 20pt; width: 100%">{{datapoint.name}}</div>
 </ion-content>

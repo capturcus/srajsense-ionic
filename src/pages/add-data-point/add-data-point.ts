@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { Feature } from './../../model';
+import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
+import { Feature, Datapoint, ADDED_DATA_POINT, DATAPOINTS_KEY } from './../../model';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the AddDataPointPage page.
@@ -17,11 +18,14 @@ import { Feature } from './../../model';
 export class AddDataPointPage {
 
   features: Array<Feature> = [];
+  datapointName: string = "";
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private storage: Storage,
+    public events: Events,
   ) {
   }
 
@@ -44,8 +48,24 @@ export class AddDataPointPage {
     editOptionsModal.present();
   }
 
+  addIntensity() {
+    this.features.push(new Feature("intensity", ["1","2","3","4","5"]));
+  }
+  
   saveDataPoint() {
-    console.log("save data point");
-    console.log(this.features);
+    this.storage.get(DATAPOINTS_KEY).then(datapoints => {
+      if (datapoints === null) {
+        datapoints = new Array<Datapoint>();
+      }
+      let newDP = new Datapoint(this.datapointName, this.features);
+      datapoints.push(newDP);
+      console.log(this.datapointName, this.features)
+      console.log(newDP);
+      console.log(datapoints);
+      this.storage.set(DATAPOINTS_KEY, datapoints).then(data => {
+        this.navCtrl.pop();
+        this.events.publish(ADDED_DATA_POINT);
+      });
+    });
   }
 }
